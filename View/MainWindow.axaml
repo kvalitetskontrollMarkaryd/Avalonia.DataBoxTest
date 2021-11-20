@@ -1,0 +1,70 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:Avalonia.DataBox.ViewModel"
+        xmlns:model="clr-namespace:Avalonia.DataBox.Model"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Avalonia.DataBox.MainWindow"
+        Title="Avalonia.DataBox"
+        x:DataType="viewModel:MainViewModel">
+
+    <Grid>
+        <DataBox x:Name="DataBox" Margin="10"
+                 Items="{CompiledBinding Projects}"
+                 CanUserResizeColumns="True"
+                 GridLinesVisibility="All"
+                 Tag="{CompiledBinding Managers}">
+            <DataBox.Columns>
+                <DataBoxTemplateColumn Header="Name"
+                                       Width="*">
+                    <DataTemplate DataType="model:Project">
+                        <Panel Background="Transparent">
+                            <TextBox Text="{CompiledBinding Name}"
+                                     Margin="0"
+                                     VerticalAlignment="Center"
+                                     BorderThickness="0" />
+                        </Panel>
+                    </DataTemplate>
+                </DataBoxTemplateColumn>
+                <DataBoxTemplateColumn Header="Number"
+                                       Width="*">
+                    <DataTemplate DataType="model:Project">
+                        <Panel Background="Transparent">
+                            <TextBox Text="{CompiledBinding Number}"
+                                     Margin="0"
+                                     BorderThickness="0" />
+                        </Panel>
+                    </DataTemplate>
+                </DataBoxTemplateColumn>
+                <DataBoxTemplateColumn Header="Remark"
+                                       Width="*">
+                    <DataTemplate DataType="model:Project">
+                        <Panel Background="Transparent">
+                            <TextBox Text="{CompiledBinding Remark}"
+                                     Margin="0"
+                                     VerticalAlignment="Center"
+                                     BorderThickness="0" />
+                        </Panel>
+                    </DataTemplate>
+                </DataBoxTemplateColumn>
+                <DataBoxTemplateColumn Header="Manager"
+                                       Width="*">
+                    <DataTemplate DataType="model:Project">
+                        <Panel Background="Transparent">
+                            <ComboBox
+                                Items="{CompiledBinding #DataBox.Tag}"
+                                SelectedItem="{CompiledBinding Manager}"
+                                BorderThickness="0"
+                                HorizontalAlignment="Stretch" />
+                        </Panel>
+                    </DataTemplate>
+                </DataBoxTemplateColumn>
+                <DataBoxCheckBoxColumn Header="IsChecked"
+                                       Width="100"
+                                       Binding="{CompiledBinding IsChecked }"
+                                       x:DataType="model:Project" />
+            </DataBox.Columns>
+        </DataBox>
+    </Grid>
+</Window>
