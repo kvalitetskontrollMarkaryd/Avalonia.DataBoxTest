@@ -53,13 +53,26 @@
                     <DataTemplate DataType="model:Project">
                         <Panel Background="Transparent">
                             <ComboBox
-                                Items="{CompiledBinding #DataBox.Tag}"
+                                Items="{Binding Path=DataContext.Managers, 
+                                        RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                 SelectedItem="{CompiledBinding Manager}"
                                 BorderThickness="0"
                                 HorizontalAlignment="Stretch" />
                         </Panel>
                     </DataTemplate>
                 </DataBoxTemplateColumn>
+                <!--<DataBoxTemplateColumn Header="Manager"
+                                       Width="*">
+                    <DataTemplate DataType="model:Project">
+                        <Panel Background="Transparent">
+                            <ComboBox
+                                Items="{CompiledBinding #DataBox.Tag}"
+                                SelectedItem="{CompiledBinding Manager}"
+                                BorderThickness="0"
+                                HorizontalAlignment="Stretch" />
+                        </Panel>
+                    </DataTemplate>
+                </DataBoxTemplateColumn>-->
                 <DataBoxCheckBoxColumn Header="IsChecked"
                                        Width="100"
                                        Binding="{CompiledBinding IsChecked }"
